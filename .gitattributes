@@ -1,0 +1,108 @@
+#
+# This file contains rules that control how Git handles binary and text files, including line endings
+#
+ 
+
+# Make sure Windows batch files preserve CR/LF line endings, otherwise they may not be able to execute.  Windows
+# batch files require a CR/LF for labels to work properly, otherwise they may fail when labels straddle 512-byte
+# block boundaries.  This is important when files are downloaded through a zip archive that was authored on a
+# Linux machine (the default behavior on GitHub)
+
+*.bat eol=crlf
+
+# A place to store art
+Art/** filter=lfs diff=lfs merge=lfs binary 
+
+# The in game content is binary
+Projects/**/Content/** filter=lfs diff=lfs merge=lfs binary 
+Projects/**/DerivedDataCache/** filter=lfs diff=lfs merge=lfs binary
+Projects/**/Binaries/** filter=lfs diff=lfs merge=lfs binary 
+
+
+# UE file types
+*.uasset filter=lfs diff=lfs merge=lfs -text
+*.umap filter=lfs diff=lfs merge=lfs -text
+*.upack filter=lfs diff=lfs merge=lfs binary
+*.ddc filter=lfs diff=lfs merge=lfs binary
+
+# Raw Content types
+*.fbx filter=lfs diff=lfs merge=lfs -text
+*.3ds filter=lfs diff=lfs merge=lfs -text
+*.dds filter=lfs diff=lfs merge=lfs -text
+*.psd filter=lfs diff=lfs merge=lfs -text
+*.exr filter=lfs diff=lfs merge=lfs -text
+*.tif filter=lfs diff=lfs merge=lfs -text
+*.jpeg filter=lfs diff=lfs merge=lfs -text
+*.jpg filter=lfs diff=lfs merge=lfs -text
+*.gif filter=lfs diff=lfs merge=lfs -text
+*.png filter=lfs diff=lfs merge=lfs -text
+*.mp3 filter=lfs diff=lfs merge=lfs -text
+*.wav filter=lfs diff=lfs merge=lfs -text
+*.xcf filter=lfs diff=lfs merge=lfs -text
+*.mp4 filter=lfs diff=lfs merge=lfs -text
+*.bink filter=lfs diff=lfs merge=lfs -text
+
+# For when folks check in compressed folders
+*.zip filter=lfs diff=lfs merge=lfs binary
+*.7z filter=lfs diff=lfs merge=lfs binary
+*.gz filter=lfs diff=lfs merge=lfs binary
+*.pkg filter=lfs diff=lfs merge=lfs binary
+*.tar filter=lfs diff=lfs merge=lfs binary
+*.tar.* filter=lfs diff=lfs merge=lfs binary
+*.bz2 filter=lfs diff=lfs merge=lfs binary
+*.tgz filter=lfs diff=lfs merge=lfs binary
+*.dmg filter=lfs diff=lfs merge=lfs binary
+*.dsym filter=lfs diff=lfs merge=lfs binary
+*.debug filter=lfs diff=lfs merge=lfs binary
+
+# Executables & Binaries
+*.exe filter=lfs diff=lfs merge=lfs binary
+*.dll filter=lfs diff=lfs merge=lfs binary
+*.lib filter=lfs diff=lfs merge=lfs binary
+*.bin filter=lfs diff=lfs merge=lfs binary
+*.msi filter=lfs diff=lfs merge=lfs binary
+
+# Filters for CPP compliation objects
+*.pdb filter=lfs diff=lfs merge=lfs binary
+*.pch filter=lfs diff=lfs merge=lfs binary
+*.obj filter=lfs diff=lfs merge=lfs binary
+*.elf filter=lfs diff=lfs merge=lfs binary
+*.so filter=lfs diff=lfs merge=lfs binary
+*.so.* filter=lfs diff=lfs merge=lfs binary
+*.a filter=lfs diff=lfs merge=lfs binary
+*.dylib filter=lfs diff=lfs merge=lfs binary
+*.lld filter=lfs diff=lfs merge=lfs binary
+*.dbg filter=lfs diff=lfs merge=lfs binary
+*.glb filter=lfs diff=lfs merge=lfs binary
+*.dsym filter=lfs diff=lfs merge=lfs binary
+*.debug filter=lfs diff=lfs merge=lfs binary
+
+# docs and 3rd party sdk stuff
+*.chm filter=lfs diff=lfs merge=lfs binary
+*.pdf filter=lfs diff=lfs merge=lfs binary
+*.odt filter=lfs diff=lfs merge=lfs -text
+*.docx filter=lfs diff=lfs merge=lfs -text
+
+# ===========================================
+
+# Filters for UnrealEngine itself
+FeaturePacks/** filter=lfs diff=lfs merge=lfs binary 
+
+# not sure if error or?
+*.dmp filter=lfs diff=lfs merge=lfs binary
+*.aar filter=lfs diff=lfs merge=lfs binary
+
+# These files are large with no extension
+GVRSDK filter=lfs diff=lfs merge=lfs binary
+FBSDKCoreKit filter=lfs diff=lfs merge=lfs binary
+ARCoreCloudAnchors filter=lfs diff=lfs merge=lfs binary
+ispc filter=lfs diff=lfs merge=lfs binary
+ispc_osx filter=lfs diff=lfs merge=lfs binary
+icupkg filter=lfs diff=lfs merge=lfs binary
+"Chromium Embedded Framework" filter=lfs diff=lfs merge=lfs binary
+phonon_bundle filter=lfs diff=lfs merge=lfs binary
+ue4_denorm filter=lfs diff=lfs merge=lfs binary
+gencmn filter=lfs diff=lfs merge=lfs binary
+gendict filter=lfs diff=lfs merge=lfs binary
+genrb filter=lfs diff=lfs merge=lfs binary
+pkgdata filter=lfs diff=lfs merge=lfs binary
