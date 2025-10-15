@@ -1,0 +1,5 @@
+# Unreal pre-commit hook:
+# 1. 阻止大文件
+# 2. 检查子模块状态
+node scripts/precommit-check.js
+

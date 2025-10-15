@@ -75,3 +75,4 @@ Plugins/**/Intermediate/*
 DerivedDataCache/*
 .idea
 
+node_modules
