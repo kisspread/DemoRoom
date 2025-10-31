@@ -5,21 +5,20 @@
 
 Unreal Engine(UE5.6) DemoRoom PCG Version, Full process use PCG to build.
 
-I found this DemoRoom in UE's official ContentSample that can generate different room variations. It uses Blueprint to achieve fine control over the rooms.
+I found the DemoRoom in UE's official ContentSample, which can generate different room variations. It uses Blueprints to achieve fine control over the rooms.
 
-Fine control is well-suited for Blueprint scripting, but it requires a lot of Blueprint code. The official DemoRoom was made before PCG, probably around 10 years ago. Now that we have PCG, I wanted to test if PCG can handle this kind of requirement.
+Fine control is well-suited for Blueprint scripting, but it requires a lot of Blueprint code. The official DemoRoom was created before PCG and is about 10 years old. Now with PCG available, I want to test if PCG can meet this kind of need.
 
-Usually, PCG is used as a tool for scattering points randomly across terrain, sampling models, textures, etc. So, most of the time, PCG is treated as a **macro-level tool**.
+Often, PCG is used as a tool for scattering points randomly on terrain, sampling terrain, models, textures, etc., so it's mostly seen as a **macro-level tool**.
 
-This is an experimental project to see if PCG can finely control room generation like UE's official DemoRoom. I also want to check if the development and maintenance costs are lower compared to Blueprint scripting, and if it’s more convenient.
+This is an experimental project to explore whether PCG can finely control room generation like UE's official DemoRoom, and whether the development and maintenance costs are lower than using Blueprint scripting. Is it more convenient?
 
 Some of my thoughts:
-- **Transform Location**: Floating-point calculations here can easily introduce errors, which then carry over into later steps—especially if the starting point isn’t the origin. To eliminate errors, it’s best to start at world coordinates (0,0,0). Then, in the final stage, use Copy Points to duplicate the point cloud and apply Transform Location to move it to the target position.
-- **Subdivide Spline**: Its extrusion vector is super picky. If there’s even a tiny error in the transform, like the vector being off by 1cm, it’ll throw an error (if it’s too long) or a warning (if it’s too short). So when setting the extrusion vector length, it’s better to leave a little extra margin.
-- Overall, PCG *can* handle fine control, but you need to watch out for these small issues.
-- In terms of development efficiency, it really depends on how familiar you are with PCG. PCG offers way better debugging—quick data inspection and visualization—things Blueprint just can’t match.
-- As for Editor performance, PCG needs more computing power, while regular Blueprint scripts run faster. But honestly, it’s not really a big issue in practice.
-
+- **Transform Location**: Floating-point calculations are prone to errors, which can carry over into later calculations, especially if the starting point isn't the origin. To eliminate errors, it's best to use world coordinates (0,0,0) as the starting point and then use Copy Points to move everything to the target location in the final stage.
+- **Subdivide Spline**: Its extrusion vector is very picky. If there's even a tiny error in the transform, like the vector being off by 1cm, it'll throw an error (or a warning if it's not fully used). So when setting the extrusion vector length, leave a little extra margin.
+- Overall, PCG can handle fine control, but you gotta watch out for these small issues.
+- Development efficiency depends on how familiar you are with PCG. PCG has way better debugging tools, like quick data inspection, which Blueprints can't match at all.
+- Editor performance: PCG needs more computing resources, while regular Blueprint scripts run faster, but it's usually not a big deal.
 
 From:
 ![img.png](./Image/img.webp)
